@@ -1,0 +1,65 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Servicio {
+  id          String  @id @default(cuid())
+  nombre      String
+  descripcion String
+  precio      Float
+  duracionMin Int
+  icono       String? // emoji
+
+  reservas Reserva[]
+}
+
+model Barbero {
+  id           String  @id @default(cuid())
+  nombre       String
+  foto         String  // emoji or initials
+  especialidad String
+  rating       Float   @default(5.0)
+  activo       Boolean @default(true)
+
+  reservas Reserva[]
+  horarios HorarioBarbero[]
+}
+
+model HorarioBarbero {
+  id         String  @id @default(cuid())
+  barberoId  String
+  diaSemana  Int     // 0=Sunday ... 6=Saturday
+  horaInicio String // "10:00"
+  horaFin    String // "20:00"
+
+  barbero Barbero @relation(fields: [barberoId], references: [id], onDelete: Cascade)
+}
+
+model Reserva {
+  id            String   @id @default(cuid())
+  clienteNombre String
+  clientePhone  String
+  barberoId     String
+  servicioId    String
+  fecha         String   // YYYY-MM-DD
+  hora          String   // HH:mm
+  estado        String   @default("pendiente") // pendiente, completada, cancelada
+  creadoEn      DateTime @default(now())
+
+  barbero  Barbero  @relation(fields: [barberoId], references: [id])
+  servicio Servicio @relation(fields: [servicioId], references: [id])
+}
+
+model Testimonio {
+  id       String  @id @default(cuid())
+  autor    String
+  texto    String
+  rating   Int     // 1-5
+  aprobado Boolean @default(false)
+}
