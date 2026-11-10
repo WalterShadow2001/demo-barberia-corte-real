@@ -8,11 +8,9 @@ export async function GET() {
     });
     return NextResponse.json(servicios);
   } catch (e) {
-    const err = e instanceof Error ? e.message : String(e);
-    const stack = e instanceof Error ? e.stack : "";
-    console.error("GET /api/servicios error:", err);
+    console.error("GET /api/servicios error:", e);
     return NextResponse.json(
-      { error: "No se pudieron cargar los servicios", detail: err, stack: stack?.slice(0, 500) },
+      { error: "No se pudieron cargar los servicios" },
       { status: 500 }
     );
   }
