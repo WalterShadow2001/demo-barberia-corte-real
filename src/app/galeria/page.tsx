@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -10,20 +9,26 @@ import { cn } from "@/lib/utils";
 type GaleriaItem = {
   src: string;
   alt: string;
+  title: string;
   tag: string;
-  tall?: boolean;
 };
 
+// Real barbershop / haircut photos fetched via `z-ai image-search` (ZAI in-house OSS-hosted URLs).
+// 12 images across 6 categories (2 per category) — fades, classic cuts, beard grooming,
+// hair design, kids cuts, and barber tools.
 const GALERIA: GaleriaItem[] = [
-  { src: "https://images.unsplash.com/photo-1503951918679-11664729b38d?w=800&h=800&fit=crop", alt: "Corte clásico de tijera con acabado de navaja", tag: "Corte clásico" },
-  { src: "https://images.unsplash.com/photo-1599351431202-1e0f026789a6?w=800&h=800&fit=crop", alt: "Fade degradado limpio", tag: "Fade", tall: true },
-  { src: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=800&fit=crop", alt: "Barba perfilada con navaja", tag: "Barba" },
-  { src: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&h=800&fit=crop", alt: "Afeitado clásico con toalla caliente", tag: "Afeitado" },
-  { src: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=800&fit=crop", alt: "Diseño con navaja", tag: "Diseño", tall: true },
-  { src: "https://images.unsplash.com/photo-1635273051937-39ad6cbd4dd4?w=800&h=800&fit=crop", alt: "Corte moderno texturizado", tag: "Moderno" },
-  { src: "https://images.unsplash.com/photo-1605497788044-5a32c70e8d34?w=800&h=800&fit=crop", alt: "Corte infantil", tag: "Infantil" },
-  { src: "https://images.unsplash.com/photo-1596702608244-71d94d44d97c?w=800&h=800&fit=crop", alt: "Estilo urbano", tag: "Urbano", tall: true },
-  { src: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=800&fit=crop", alt: "Acabado premium", tag: "Premium" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3d6e2a6bc3c8.jpg", alt: "Fade degradado moderno en corte de hombre con cabello corto", title: "Fade Degradado", tag: "Cortes" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/137c6618978a.jpg", alt: "Corte fade degradado lateral con detalle en la parte alta", title: "Fade Degradado", tag: "Cortes" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7ec329407dfe.jpg", alt: "Corte clásico de caballero en barbershop con acabado de navaja", title: "Corte Clásico", tag: "Cortes" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a57aaa2a63e4.png", alt: "Corte clásico texturizado con peine y tijera en barbershop", title: "Corte Clásico", tag: "Cortes" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ff50f4ddbb92.jpg", alt: "Arreglo de barba perfilada con navaja por barbero profesional", title: "Arreglo de Barba", tag: "Barba" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f277106d1d90.jpeg", alt: "Perfilado de barba con toalla caliente en barbershop premium", title: "Arreglo de Barba", tag: "Barba" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5e624188815e.jpg", alt: "Diseño y líneas decorativas talladas con navaja sobre el degradado", title: "Diseño y Líneas", tag: "Detalles" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/82e4f867717f.jpg", alt: "Detalle de líneas y diseño artístico de barbería sobre fade", title: "Diseño y Líneas", tag: "Detalles" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d027e10037f4.jpg", alt: "Corte infantil en niño con acabado limpio en barbershop", title: "Corte Infantil", tag: "Cortes" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a7a700f6b701.jpg", alt: "Niño recibiendo corte de cabello en silla de barbero", title: "Corte Infantil", tag: "Cortes" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ecb110bc9048.jpg", alt: "Herramientas del oficio: tijeras, navaja y peine sobre superficie oscura", title: "Herramientas del Oficio", tag: "Detalles" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/751bf26f4210.jpg", alt: "Flat lay de herramientas de barbería: tijeras, navaja y cepillo", title: "Herramientas del Oficio", tag: "Detalles" },
 ];
 
 export default function GaleriaPage() {
@@ -84,19 +89,18 @@ export default function GaleriaPage() {
               transition={{ duration: 0.4, delay: i * 0.05 }}
               className="gallery-item card-gold-hover break-inside-avoid mb-4 group"
             >
-              <Image
+              <img
                 src={g.src}
                 alt={g.alt}
-                width={800}
-                height={g.tall ? 1100 : 800}
+                loading="lazy"
                 className="w-full h-auto object-cover"
               />
               <div className="gallery-overlay">
                 <p className="gallery-overlay-title text-base sm:text-lg">
-                  {g.tag}
+                  {g.title}
                 </p>
                 <p className="gallery-overlay-text">
-                  Corte Real · Barbería Premium
+                  {g.tag} · Corte Real Barbería Premium
                 </p>
               </div>
             </motion.div>

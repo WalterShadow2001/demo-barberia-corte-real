@@ -95,6 +95,19 @@ export default function HomePage() {
     <>
       {/* === HERO === */}
       <section className="relative overflow-hidden hero-vignette">
+        {/* Real barbershop interior as atmospheric background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-25"
+          style={{
+            backgroundImage:
+              "url(https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ca3796fd2d2e.jpg)",
+          }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#0f0f0f]/80 via-[#0f0f0f]/70 to-[#0f0f0f]"
+          aria-hidden="true"
+        />
         <div className="absolute inset-0 grain-gold pointer-events-none" />
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-20 sm:py-28 lg:py-36 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -543,12 +556,12 @@ function Stat({
 }
 
 const GALLERY_IMAGES = [
-  { src: "https://images.unsplash.com/photo-1503951918679-11664729b38d?w=500&h=500&fit=crop", alt: "Corte clásico de tijera", tag: "Corte clásico" },
-  { src: "https://images.unsplash.com/photo-1599351431202-1e0f026789a6?w=500&h=500&fit=crop", alt: "Fade degradado", tag: "Fade" },
-  { src: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&h=500&fit=crop", alt: "Barba perfilada", tag: "Barba" },
-  { src: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=500&h=500&fit=crop", alt: "Afeitado clásico", tag: "Afeitado" },
-  { src: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=500&h=500&fit=crop", alt: "Diseño con navaja", tag: "Diseño" },
-  { src: "https://images.unsplash.com/photo-1635273051937-39ad6cbd4dd4?w=500&h=500&fit=crop", alt: "Corte moderno", tag: "Moderno" },
-  { src: "https://images.unsplash.com/photo-1605497788044-5a32c70e8d34?w=500&h=500&fit=crop", alt: "Corte infantil", tag: "Infantil" },
-  { src: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&h=500&fit=crop", alt: "Estilo barbería", tag: "Estilo" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3d6e2a6bc3c8.jpg", alt: "Fade degradado moderno en corte de hombre", tag: "Fade" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7ec329407dfe.jpg", alt: "Corte clásico de caballero en barbershop", tag: "Clásico" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ff50f4ddbb92.jpg", alt: "Arreglo de barba perfilada con navaja", tag: "Barba" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5e624188815e.jpg", alt: "Diseño y líneas talladas con navaja sobre fade", tag: "Diseño" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d027e10037f4.jpg", alt: "Corte infantil limpio en barbershop", tag: "Infantil" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ecb110bc9048.jpg", alt: "Herramientas del oficio: tijeras y navaja", tag: "Oficio" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/137c6618978a.jpg", alt: "Corte fade degradado lateral con detalle", tag: "Fade" },
+  { src: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a57aaa2a63e4.png", alt: "Corte clásico texturizado con peine y tijera", tag: "Clásico" },
 ];
