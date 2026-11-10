@@ -318,3 +318,282 @@
   background-image:
     repeating-linear-gradient(0deg, rgba(212, 175, 55, 0.02) 0, rgba(212, 175, 55, 0.02) 1px, transparent 1px, transparent 3px);
 }
+
+/* === More uiverse-inspired effects — per page variety === */
+
+/* ====== 3D Flip Card (for /barberos profile cards) ====== */
+.flip-card {
+  perspective: 1000px;
+  height: 380px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #1A1A1A 0%, #0F0F0F 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+/* ====== Progress Dots Stepper (for /reservar steps) ====== */
+.progress-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.progress-dot.active {
+  background: #D4AF37;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+  transform: scale(1.3);
+}
+.progress-dot.completed {
+  background: #D4AF37;
+}
+.progress-dot.completed::after {
+  content: '✓';
+  position: absolute;
+  top: -2px;
+  left: 1px;
+  color: #0F0F0F;
+  font-size: 10px;
+  font-weight: bold;
+}
+.progress-line {
+  width: 32px;
+  height: 2px;
+  background: rgba(212, 175, 55, 0.25);
+  transition: background 0.3s ease;
+}
+.progress-line.completed {
+  background: #D4AF37;
+}
+
+/* ====== Time Slot Pill (for /reservar step 3) ====== */
+.slot-pill {
+  padding: 10px 16px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: #F5E6D3;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.slot-pill:hover:not(:disabled) {
+  border-color: #D4AF37;
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateY(-1px);
+}
+.slot-pill.active {
+  background: linear-gradient(135deg, #D4AF37, #F5E6D3);
+  color: #0F0F0F;
+  border-color: #D4AF37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+.slot-pill:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* ====== Image Zoom Overlay (for /galeria) ====== */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.gallery-item img,
+.gallery-item .gallery-placeholder {
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover img,
+.gallery-item:hover .gallery-placeholder {
+  transform: scale(1.1);
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 50%,
+    rgba(15, 15, 15, 0.85) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+}
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+.gallery-overlay-title {
+  color: #D4AF37;
+  font-weight: 600;
+  margin-bottom: 4px;
+  transform: translateY(10px);
+  transition: transform 0.3s ease 0.1s;
+}
+.gallery-item:hover .gallery-overlay-title {
+  transform: translateY(0);
+}
+.gallery-overlay-text {
+  color: #F5E6D3;
+  font-size: 0.875rem;
+  transform: translateY(10px);
+  transition: transform 0.3s ease 0.15s;
+}
+.gallery-item:hover .gallery-overlay-text {
+  transform: translateY(0);
+}
+
+/* ====== Floating Label Input (for /contacto form) ====== */
+.floating-input {
+  position: relative;
+}
+.floating-input input,
+.floating-input textarea {
+  width: 100%;
+  padding: 18px 12px 6px;
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 8px;
+  color: #F5E6D3;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.floating-input input:focus,
+.floating-input textarea:focus {
+  outline: none;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+.floating-input label {
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  color: rgba(245, 230, 211, 0.5);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+.floating-input input:focus + label,
+.floating-input input:not(:placeholder-shown) + label,
+.floating-input textarea:focus + label,
+.floating-input textarea:not(:placeholder-shown) + label {
+  top: 4px;
+  font-size: 0.7rem;
+  color: #D4AF37;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.floating-input input::placeholder,
+.floating-input textarea::placeholder {
+  color: transparent;
+}
+
+/* ====== Animated Barber Pole (for hero accent decoration) ====== */
+.barber-pole-anim {
+  width: 8px;
+  height: 60px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #D4AF37 0,
+    #D4AF37 6px,
+    #0F0F0F 6px,
+    #0F0F0F 12px,
+    #8B1A1A 12px,
+    #8B1A1A 18px,
+    #F5E6D3 18px,
+    #F5E6D3 24px
+  );
+  background-size: 100% 24px;
+  animation: barber-pole-scroll 1.5s linear infinite;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+@keyframes barber-pole-scroll {
+  to { background-position: 0 24px; }
+}
+
+/* ====== Service Card Shine Line (for /servicios) ====== */
+.shine-line-card {
+  position: relative;
+  overflow: hidden;
+}
+.shine-line-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.shine-line-card:hover::after {
+  transform: translateX(100%);
+}
+
+/* ====== Animated Underline Reveal (for section titles) ====== */
+.title-underline-reveal {
+  position: relative;
+  display: inline-block;
+}
+.title-underline-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #D4AF37, transparent);
+  animation: underline-grow 1.2s ease-out;
+}
+@keyframes underline-grow {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+/* ====== Social Icon Bounce (for /barberos social links) ====== */
+.social-icon-bounce {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.social-icon-bounce:hover {
+  transform: translateY(-4px) scale(1.15);
+}

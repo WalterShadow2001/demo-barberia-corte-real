@@ -82,22 +82,21 @@ export default function GaleriaPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="card-gold-hover shine-on-hover break-inside-avoid mb-4 relative overflow-hidden rounded-xl group"
+              className="gallery-item card-gold-hover break-inside-avoid mb-4 group"
             >
               <Image
                 src={g.src}
                 alt={g.alt}
                 width={800}
                 height={g.tall ? 1100 : 800}
-                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/90 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-              <div className="absolute bottom-4 left-4 right-4 translate-y-2 group-hover:translate-y-0 transition-transform">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-primary/80">
-                  Corte Real
-                </span>
-                <p className="font-serif text-lg font-semibold text-foreground mt-0.5">
+              <div className="gallery-overlay">
+                <p className="gallery-overlay-title text-base sm:text-lg">
                   {g.tag}
+                </p>
+                <p className="gallery-overlay-text">
+                  Corte Real · Barbería Premium
                 </p>
               </div>
             </motion.div>

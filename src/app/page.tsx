@@ -104,11 +104,14 @@ export default function HomePage() {
               transition={{ duration: 0.7 }}
               className="text-center lg:text-left"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgba(212,175,55,0.3)] bg-[rgba(212,175,55,0.06)] mb-6">
-                <Crown className="h-4 w-4 text-primary" />
-                <span className="text-xs uppercase tracking-[0.25em] text-primary font-medium">
-                  Barbería Premium · Delicias, Chih.
-                </span>
+              <div className="flex items-center gap-4 mb-6 justify-center lg:justify-start">
+                <div className="barber-pole-anim" aria-hidden="true" />
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgba(212,175,55,0.3)] bg-[rgba(212,175,55,0.06)]">
+                  <Crown className="h-4 w-4 text-primary" />
+                  <span className="text-xs uppercase tracking-[0.25em] text-primary font-medium">
+                    Barbería Premium · Delicias, Chih.
+                  </span>
+                </div>
               </div>
               <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight">
                 El arte de
@@ -185,7 +188,7 @@ export default function HomePage() {
           <p className="text-xs uppercase tracking-[0.3em] text-primary mb-3">
             Nuestros servicios
           </p>
-          <h2 className="font-serif text-4xl sm:text-5xl font-bold">
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold title-underline-reveal">
             Experiencias que <span className="text-gold-gradient">definen</span> un rey
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
@@ -374,7 +377,7 @@ export default function HomePage() {
           <p className="text-xs uppercase tracking-[0.3em] text-primary mb-3">
             Nuestro trabajo
           </p>
-          <h2 className="font-serif text-4xl sm:text-5xl font-bold">
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold title-underline-reveal">
             La <span className="text-gold-gradient">galería</span> real
           </h2>
         </motion.div>

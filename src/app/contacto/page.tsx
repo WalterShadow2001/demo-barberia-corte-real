@@ -173,55 +173,48 @@ export default function ContactoPage() {
               Cuéntanos qué necesitas y te responderemos a la brevedad.
             </p>
             <form onSubmit={onSubmit} className="space-y-4">
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-1.5">
-                  Nombre *
-                </label>
+              <div className="floating-input">
                 <input
                   type="text"
+                  id="contacto-nombre"
                   value={form.nombre}
                   onChange={(e) => setForm({ ...form, nombre: e.target.value })}
-                  className="w-full bg-[#0F0F0F] border border-[rgba(212,175,55,0.2)] rounded-md px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
-                  placeholder="Tu nombre"
+                  placeholder=" "
                 />
+                <label htmlFor="contacto-nombre">Nombre completo *</label>
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-1.5">
-                    Teléfono *
-                  </label>
+                <div className="floating-input">
                   <input
                     type="tel"
+                    id="contacto-telefono"
                     value={form.telefono}
                     onChange={(e) => setForm({ ...form, telefono: e.target.value })}
-                    className="w-full bg-[#0F0F0F] border border-[rgba(212,175,55,0.2)] rounded-md px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
-                    placeholder="(639) ..."
+                    placeholder=" "
                   />
+                  <label htmlFor="contacto-telefono">Teléfono *</label>
                 </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-1.5">
-                    Email
-                  </label>
+                <div className="floating-input">
                   <input
                     type="email"
+                    id="contacto-email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-[#0F0F0F] border border-[rgba(212,175,55,0.2)] rounded-md px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
-                    placeholder="tu@correo.com"
+                    placeholder=" "
                   />
+                  <label htmlFor="contacto-email">Email</label>
                 </div>
               </div>
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-1.5">
-                  Mensaje *
-                </label>
+              <div className="floating-input">
                 <textarea
+                  id="contacto-mensaje"
                   rows={5}
                   value={form.mensaje}
                   onChange={(e) => setForm({ ...form, mensaje: e.target.value })}
-                  className="w-full bg-[#0F0F0F] border border-[rgba(212,175,55,0.2)] rounded-md px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors resize-none"
-                  placeholder="¿En qué te podemos ayudar?"
+                  placeholder=" "
+                  className="resize-none"
                 />
+                <label htmlFor="contacto-mensaje">Mensaje *</label>
               </div>
               <button
                 type="submit"

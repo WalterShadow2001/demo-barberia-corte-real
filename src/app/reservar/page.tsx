@@ -205,28 +205,40 @@ function ReservarInner() {
             Agenda con <span className="text-gold-gradient">Corte Real</span>
           </h1>
 
-          {/* Stepper */}
-          <div className="mt-8 flex items-center justify-center gap-1 sm:gap-2 overflow-x-auto pb-2">
-            {STEPS.map((label, i) => (
-              <div key={label} className="flex items-center gap-1 sm:gap-2 shrink-0">
-                <div
-                  className={cn(
-                    "flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-full border transition-all",
-                    i < step && "border-primary bg-primary text-[#0F0F0F]",
-                    i === step && "border-primary bg-[rgba(212,175,55,0.12)] text-primary",
-                    i > step && "border-[rgba(212,175,55,0.15)] text-muted-foreground"
+          {/* Stepper — progress dots */}
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <div className="progress-dots">
+              {STEPS.slice(0, 4).map((label, i) => (
+                <React.Fragment key={label}>
+                  <div
+                    className={cn(
+                      "progress-dot",
+                      step >= 4
+                        ? "completed"
+                        : i < step
+                        ? "completed"
+                        : i === step
+                        ? "active"
+                        : ""
+                    )}
+                    aria-label={label}
+                  />
+                  {i < 3 && (
+                    <div
+                      className={cn(
+                        "progress-line",
+                        step >= 4 || i < step ? "completed" : ""
+                      )}
+                    />
                   )}
-                >
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold">
-                    {i < step ? <Check className="h-3 w-3" /> : i + 1}
-                  </span>
-                  <span className="text-xs font-medium hidden sm:inline">{label}</span>
-                </div>
-                {i < STEPS.length - 1 && (
-                  <ChevronRight className="h-3 w-3 text-muted-foreground/50" />
-                )}
-              </div>
-            ))}
+                </React.Fragment>
+              ))}
+            </div>
+            <p className="text-xs uppercase tracking-wider text-primary font-medium">
+              {step >= 4
+                ? "¡Listo! Tu cita está confirmada"
+                : `Paso ${step + 1} de 4 · ${STEPS[step]}`}
+            </p>
           </div>
         </div>
       </section>
@@ -760,21 +772,16 @@ function DatePicker({
             <div className="loader-gold-ring" />
           </div>
         ) : disp && disp.laborable ? (
-          <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-80 overflow-y-auto scrollbar-gold pr-1">
+          <div className="flex flex-wrap gap-2 max-h-80 overflow-y-auto scrollbar-gold pr-1">
             {TIME_SLOTS.map((slot) => {
-              const disp = disponiblesSet.has(slot);
+              const available = disponiblesSet.has(slot);
               const sel = hora === slot;
               return (
                 <button
                   key={slot}
-                  disabled={!disp}
+                  disabled={!available}
                   onClick={() => onHora(slot)}
-                  className={cn(
-                    "py-2.5 rounded-md text-sm font-medium transition-all border",
-                    sel && "bg-primary text-[#0F0F0F] border-primary",
-                    !sel && disp && "border-[rgba(212,175,55,0.2)] text-foreground hover:border-primary hover:text-primary",
-                    !disp && "border-[rgba(212,175,55,0.08)] text-muted-foreground/30 cursor-not-allowed line-through"
-                  )}
+                  className={cn("slot-pill", sel && "active")}
                 >
                   {slot}
                 </button>

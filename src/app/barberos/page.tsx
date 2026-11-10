@@ -6,12 +6,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Star,
-  Clock,
   Calendar,
   ChevronLeft,
-  Scissors,
   Instagram,
   Award,
+  Sparkles,
 } from "lucide-react";
 import { useFetch } from "@/hooks/use-fetch";
 import { BARBERIA_INFO } from "@/lib/info";
@@ -35,8 +34,6 @@ type Barbero = {
   instagram: string | null;
   horarios: Horario[];
 };
-
-const DIAS = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 
 export default function BarberosPage() {
   const { data: barberos, loading } = useFetch<Barbero[]>("/api/barberos");
@@ -73,90 +70,83 @@ export default function BarberosPage() {
             <div className="loader-gold-ring" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {barberos?.map((b, i) => (
               <motion.div
                 key={b.id}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="card-premium-glass rounded-xl overflow-hidden flex flex-col sm:flex-row"
+                className="flip-card"
               >
-                <div className="relative w-full sm:w-2/5 aspect-square sm:aspect-auto">
-                  <Image
-                    src={b.foto}
-                    alt={`Barbero ${b.nombre} ${b.apellidos}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A]/40" />
-                </div>
-                <div className="flex-1 p-6 flex flex-col">
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <div>
-                      <h2 className="font-serif text-2xl font-bold">
-                        {b.nombre} {b.apellidos}
-                      </h2>
-                      <p className="text-xs uppercase tracking-wider text-primary mt-1">
-                        {b.especialidad}
+                <div className="flip-card-inner">
+                  {/* Front: photo + name + rating */}
+                  <div className="flip-card-front relative">
+                    <Image
+                      src={b.foto}
+                      alt={`Barbero ${b.nombre} ${b.apellidos}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/40 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <h2 className="font-serif text-xl font-bold text-foreground">
+                            {b.nombre} {b.apellidos}
+                          </h2>
+                          <p className="text-xs uppercase tracking-wider text-primary mt-1">
+                            {b.especialidad}
+                          </p>
+                        </div>
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#0F0F0F]/80 border border-primary/30 text-xs font-medium text-primary shrink-0">
+                          <Star className="h-3.5 w-3.5 fill-primary" />
+                          {b.rating.toFixed(1)}
+                        </span>
+                      </div>
+                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-3 flex items-center gap-1.5">
+                        <Sparkles className="h-3 w-3 text-primary" />
+                        Pasa el cursor para ver más
                       </p>
                     </div>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/15 border border-primary/30 text-xs font-medium text-primary shrink-0">
-                      <Star className="h-3.5 w-3.5 fill-primary" />
-                      {b.rating.toFixed(1)}
-                    </span>
                   </div>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed my-4">
-                    {b.bio}
-                  </p>
-
-                  <div className="flex flex-wrap gap-3 mb-5 text-xs text-muted-foreground">
-                    <span className="inline-flex items-center gap-1.5">
+                  {/* Back: bio + especialidad + instagram + reservar */}
+                  <div className="flip-card-back">
+                    <Award className="h-8 w-8 text-primary" />
+                    <h3 className="font-serif text-xl font-bold text-foreground">
+                      {b.nombre} {b.apellidos}
+                    </h3>
+                    <p className="text-xs uppercase tracking-wider text-primary">
+                      {b.especialidad}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4">
+                      {b.bio}
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <Award className="h-4 w-4 text-primary" />
                       {b.experiencia} años de experiencia
-                    </span>
+                    </div>
                     {b.instagram && (
                       <a
                         href={BARBERIA_INFO.redes.instagram}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
+                        className="social-icon-bounce inline-flex items-center gap-1.5 text-primary hover:text-primary"
                       >
-                        <Instagram className="h-4 w-4 text-primary" />
-                        {b.instagram}
+                        <Instagram className="h-5 w-5 social-icon-bounce" />
+                        <span className="text-xs">{b.instagram}</span>
                       </a>
                     )}
+                    <Link
+                      href={`/reservar?barbero=${b.id}`}
+                      className="btn-gold-glow inline-flex items-center justify-center gap-2 px-5 py-2 rounded-md text-xs"
+                    >
+                      <Calendar className="h-3.5 w-3.5" />
+                      Reservar con {b.nombre}
+                    </Link>
                   </div>
-
-                  {/* Horario */}
-                  <div className="mt-auto">
-                    <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-muted-foreground mb-2">
-                      <Clock className="h-3 w-3 text-primary" />
-                      Horario
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {b.horarios
-                        .sort((a, z) => a.diaSemana - z.diaSemana)
-                        .map((h) => (
-                          <span
-                            key={h.id}
-                            className="px-2 py-1 rounded text-[10px] border border-[rgba(212,175,55,0.2)] bg-[rgba(212,175,55,0.05)] text-muted-foreground"
-                          >
-                            {DIAS[h.diaSemana]} {h.horaInicio}–{h.horaFin}
-                          </span>
-                        ))}
-                    </div>
-                  </div>
-
-                  <Link
-                    href={`/reservar?barbero=${b.id}`}
-                    className="btn-gold-glow mt-5 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md text-sm"
-                  >
-                    <Calendar className="h-4 w-4" />
-                    Reservar con {b.nombre}
-                  </Link>
                 </div>
               </motion.div>
             ))}

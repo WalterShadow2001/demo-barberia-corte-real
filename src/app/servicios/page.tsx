@@ -61,7 +61,7 @@ export default function ServiciosPage() {
           <p className="text-xs uppercase tracking-[0.3em] text-primary mb-3">
             Carta de servicios
           </p>
-          <h1 className="font-serif text-4xl sm:text-6xl font-bold">
+          <h1 className="font-serif text-4xl sm:text-6xl font-bold title-underline-reveal">
             Nuestros <span className="text-gold-gradient">servicios</span>
           </h1>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
@@ -107,7 +107,7 @@ export default function ServiciosPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.05 }}
                   className={cn(
-                    "card-gold-hover shine-on-hover rounded-xl bg-card p-6 relative",
+                    "card-gold-hover shine-on-hover shine-line-card rounded-xl bg-card p-6 relative",
                     s.destacado && "border-[rgba(212,175,55,0.35)]"
                   )}
                 >
