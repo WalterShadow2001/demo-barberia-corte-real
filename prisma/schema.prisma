@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Servicio {
+  id          String   @id @default(cuid())
+  nombre      String
+  descripcion String
+  precio      Float
+  duracion    Int      // minutos
+  categoria   String
+  icon        String   @default("scissors")
+  destacado   Boolean  @default(false)
+  orden       Int      @default(0)
+  citas       Cita[]
+}
+
+model Barbero {
+  id           String    @id @default(cuid())
+  nombre       String
+  apellidos    String
+  bio          String
+  especialidad String
+  experiencia  Int       // años
+  foto         String
+  rating       Float     @default(5.0)
+  activo       Boolean   @default(true)
+  instagram    String?
+  citas        Cita[]
+  horarios     Horario[]
+}
+
+model Cita {
+  id             String   @id @default(cuid())
+  clienteNombre  String
+  clienteTelefono String
+  clienteEmail   String?
+  barberoId      String
+  barbero        Barbero  @relation(fields: [barberoId], references: [id])
+  servicioId     String
+  servicio       Servicio @relation(fields: [servicioId], references: [id])
+  fecha          String   // YYYY-MM-DD
+  hora           String   // HH:mm
+  estado         String   @default("pendiente") // pendiente, confirmada, completada, cancelada
+  notas          String?
+  creadoEn       DateTime @default(now())
+}
+
+model Horario {
+  id         String  @id @default(cuid())
+  barberoId  String
+  barbero    Barbero @relation(fields: [barberoId], references: [id])
+  diaSemana  Int     // 0=Domingo ... 6=Sábado
+  horaInicio String  // HH:mm
+  horaFin    String  // HH:mm
+  activo     Boolean @default(true)
+}
+
+model Testimonio {
+  id        String   @id @default(cuid())
+  nombre    String
+  rating    Int
+  comentario String
+  fecha     DateTime @default(now())
+  visible   Boolean  @default(true)
+}

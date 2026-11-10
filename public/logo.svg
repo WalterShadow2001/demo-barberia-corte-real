@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Corte Real - Barbería">
+  <defs>
+    <!-- Gold gradient -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E6D3"/>
+      <stop offset="40%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#B8941F"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="goldDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#8B6914"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBF3E3"/>
+      <stop offset="100%" stop-color="#E8D5B0"/>
+    </linearGradient>
+    <radialGradient id="innerGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#0F0F0F"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer decorative filigree ring -->
+  <circle cx="100" cy="100" r="96" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <circle cx="100" cy="100" r="92" fill="none" stroke="url(#goldDark)" stroke-width="1" stroke-dasharray="2 3" opacity="0.7"/>
+
+  <!-- Main dark circle -->
+  <circle cx="100" cy="100" r="86" fill="url(#innerGlow)"/>
+  <circle cx="100" cy="100" r="86" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.45"/>
+
+  <!-- Filigree dots around the ring -->
+  <g fill="#D4AF37">
+    <circle cx="100" cy="14" r="2.2"/>
+    <circle cx="161" cy="39" r="1.6"/>
+    <circle cx="186" cy="100" r="2.2"/>
+    <circle cx="161" cy="161" r="1.6"/>
+    <circle cx="100" cy="186" r="2.2"/>
+    <circle cx="39" cy="161" r="1.6"/>
+    <circle cx="14" cy="100" r="2.2"/>
+    <circle cx="39" cy="39" r="1.6"/>
+  </g>
+
+  <!-- Decorative laurel-like flourishes on sides -->
+  <g stroke="url(#gold)" stroke-width="1.2" fill="none" stroke-linecap="round">
+    <path d="M 28 100 Q 38 92, 44 100 Q 38 108, 28 100 Z" fill="#D4AF37" opacity="0.55"/>
+    <path d="M 172 100 Q 162 92, 156 100 Q 162 108, 172 100 Z" fill="#D4AF37" opacity="0.55"/>
+  </g>
+
+  <!-- CROWN on top -->
+  <g transform="translate(100, 44)">
+    <!-- Crown base band -->
+    <rect x="-26" y="14" width="52" height="8" rx="1.5" fill="url(#gold)" stroke="#8B6914" stroke-width="0.6"/>
+    <rect x="-22" y="16" width="44" height="2" fill="#8B1A1A" opacity="0.85"/>
+    <!-- Crown points -->
+    <path d="M -26 14 L -20 -4 L -12 8 L -6 -10 L 0 6 L 6 -10 L 12 8 L 20 -4 L 26 14 Z"
+          fill="url(#gold)" stroke="#8B6914" stroke-width="0.7" stroke-linejoin="round"/>
+    <!-- Jewels on crown points -->
+    <circle cx="-20" cy="-4" r="2" fill="#8B1A1A"/>
+    <circle cx="0" cy="6" r="2.4" fill="#F5E6D3" stroke="#8B6914" stroke-width="0.4"/>
+    <circle cx="20" cy="-4" r="2" fill="#8B1A1A"/>
+    <circle cx="-6" cy="-10" r="1.4" fill="#F5E6D3"/>
+    <circle cx="6" cy="-10" r="1.4" fill="#F5E6D3"/>
+    <!-- Crown band dots -->
+    <circle cx="-14" cy="18" r="1.1" fill="#0F0F0F"/>
+    <circle cx="0" cy="18" r="1.1" fill="#0F0F0F"/>
+    <circle cx="14" cy="18" r="1.1" fill="#0F0F0F"/>
+  </g>
+
+  <!-- CROSSING SCISSORS & STRAIGHT RAZOR in center -->
+  <g transform="translate(100, 100)">
+    <!-- Straight razor (diagonal top-left to bottom-right) -->
+    <g transform="rotate(35)">
+      <!-- Razor handle -->
+      <rect x="-34" y="-3" width="22" height="6" rx="2" fill="url(#goldDark)" stroke="#5C4515" stroke-width="0.5"/>
+      <rect x="-32" y="-1.5" width="18" height="1.4" fill="#0F0F0F" opacity="0.5"/>
+      <!-- Pivot -->
+      <circle cx="-12" cy="0" r="2.2" fill="#D4AF37" stroke="#5C4515" stroke-width="0.5"/>
+      <!-- Razor blade -->
+      <path d="M -12 -2 L 30 -2 Q 34 -2, 32 2 L 30 2 L -12 2 Z"
+            fill="url(#cream)" stroke="#8B6914" stroke-width="0.7"/>
+      <path d="M -8 0 L 28 0" stroke="#B8941F" stroke-width="0.4" opacity="0.7"/>
+    </g>
+
+    <!-- Scissors (diagonal top-right to bottom-left) -->
+    <g transform="rotate(-35)">
+      <!-- Lower blade -->
+      <path d="M 0 1.5 L 26 1.5 Q 30 1.5, 28 -2 L 0 -1.5 Z"
+            fill="url(#cream)" stroke="#8B6914" stroke-width="0.7"/>
+      <!-- Upper blade -->
+      <path d="M 0 -1.5 L 26 -1.5 Q 30 -1.5, 28 2 L 0 1.5 Z"
+            fill="url(#cream)" stroke="#8B6914" stroke-width="0.7"/>
+      <!-- Pivot screw -->
+      <circle cx="-2" cy="0" r="2.4" fill="url(#gold)" stroke="#5C4515" stroke-width="0.6"/>
+      <circle cx="-2" cy="0" r="0.9" fill="#0F0F0F"/>
+      <!-- Handles (finger bows) -->
+      <circle cx="-14" cy="-6" r="6.5" fill="none" stroke="url(#goldDark)" stroke-width="3.2"/>
+      <circle cx="-14" cy="6" r="6.5" fill="none" stroke="url(#goldDark)" stroke-width="3.2"/>
+      <!-- Handle stem to pivot -->
+      <path d="M -8 -6 Q -6 -3, -4 0" fill="none" stroke="url(#goldDark)" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M -8 6 Q -6 3, -4 0" fill="none" stroke="url(#goldDark)" stroke-width="2.8" stroke-linecap="round"/>
+    </g>
+
+    <!-- Center rivet to tie composition -->
+    <circle cx="0" cy="0" r="1.6" fill="#D4AF37" opacity="0.9"/>
+  </g>
+
+  <!-- CR MONOGRAM at bottom -->
+  <g transform="translate(100, 152)">
+    <!-- Decorative banner behind monogram -->
+    <path d="M -34 -8 Q -30 -12, -20 -10 L 20 -10 Q 30 -12, 34 -8 L 30 8 Q 20 6, 0 8 Q -20 6, -30 8 Z"
+          fill="#0F0F0F" stroke="url(#gold)" stroke-width="0.9"/>
+    <!-- C letter -->
+    <path d="M -2 -4 Q -12 -4, -12 0 Q -12 4, -2 4"
+          fill="none" stroke="url(#gold)" stroke-width="2.6" stroke-linecap="round"/>
+    <!-- R letter -->
+    <path d="M 2 -4 L 2 4 M 2 -4 L 10 -4 Q 14 -4, 14 0 Q 14 4, 10 4 L 2 4 M 9 4 L 14 4"
+          fill="none" stroke="url(#gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Barber pole stripe accent (small, bottom) -->
+  <g transform="translate(100, 174)">
+    <rect x="-22" y="-2" width="44" height="4" rx="2" fill="#0F0F0F" stroke="url(#gold)" stroke-width="0.5"/>
+    <path d="M -20 0 L -16 -2 M -14 0 L -10 -2 M -8 0 L -4 -2 M -2 0 L 2 -2 M 4 0 L 8 -2 M 10 0 L 14 -2 M 16 0 L 20 -2"
+          stroke="#8B1A1A" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Top arc text "BARBERIA" (decorative) -->
+  <g fill="#D4AF37" opacity="0.5">
+    <text x="100" y="30" text-anchor="middle" font-family="Georgia, serif"
+          font-size="7" letter-spacing="4" font-weight="600">BARBERIA</text>
+  </g>
+</svg>
